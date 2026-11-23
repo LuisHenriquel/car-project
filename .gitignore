@@ -1,9 +1,20 @@
+# Node / frontend
 node_modules
 dist
+*.tsbuildinfo
+
+# .NET
 bin
 obj
 .vs
+*.user
+
+# Sistema e editores
 .DS_Store
+.idea
 *.log
+
+# Segredos
 .env
 .env.*
+appsettings.*.local.json

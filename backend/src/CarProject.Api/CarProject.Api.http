@@ -1,0 +1,32 @@
+# Requisições de exemplo (abra no Visual Studio, Rider ou VS Code com a extensão REST Client)
+@api = http://localhost:5080
+
+### Lista os carros do catálogo
+GET {{api}}/api/vehicles
+
+### Um carro
+GET {{api}}/api/vehicles/hatch-generico
+
+### Salva um projeto
+POST {{api}}/api/projects
+Content-Type: application/json
+
+{
+  "name": "Meu hatch rebaixado",
+  "vehicleSlug": "hatch-generico",
+  "config": {
+    "paintColor": "#1d4fa3",
+    "paintFinish": "metallic",
+    "wheelStyle": "mesh",
+    "rimColor": "bronze",
+    "rimInches": 17,
+    "caliperColor": "#d0241b",
+    "rideHeightMm": -40,
+    "camberDeg": 1.5,
+    "trackMm": 10,
+    "windowTint": 60
+  }
+}
+
+### Saúde da API e do banco
+GET {{api}}/health

@@ -1,0 +1,22 @@
+{
+  "$comment": "Padrão dos modelos 3D do Car Project. Explicado em docs/modelos-3d.md. Usado pelo app e pelo scripts/validate-model.mjs.",
+  "version": 1,
+  "format": "glb",
+  "units": "meters",
+  "axes": { "forward": "+X", "up": "+Y", "right": "+Z" },
+  "origin": "no chão, no centro do carro (entre os eixos e entre as rodas)",
+  "nodes": {
+    "body": "body",
+    "wheels": {
+      "wheel_fl": "dianteira esquerda (+X, -Z)",
+      "wheel_fr": "dianteira direita (+X, +Z)",
+      "wheel_rl": "traseira esquerda (-X, -Z)",
+      "wheel_rr": "traseira direita (-X, +Z)"
+    }
+  },
+  "materials": {
+    "paint": "recebe a cor e o acabamento da pintura",
+    "glass": "recebe o insulfilm"
+  },
+  "limits": { "maxTriangles": 300000, "maxFileSizeMb": 15 }
+}
