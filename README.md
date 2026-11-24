@@ -32,7 +32,7 @@ frontend/                    React + TypeScript
     components/              painel do configurador e tela de AR
   public/models/             arquivos .glb dos carros
   scripts/                   validador de modelos e gerador do exemplo
-tools/blender/               script para conferir e exportar modelos no Blender
+tools/blender/               scripts do Blender: gerar carros, conferir/exportar e renderizar
 docs/modelos-3d.md           padrão dos modelos 3D e como adicionar um carro
 docker-compose.yml           PostgreSQL local
 ```
@@ -85,5 +85,6 @@ Veja [docs/modelos-3d.md](docs/modelos-3d.md). Resumo: modelar no padrão → `n
 - [ ] Testes do backend e do frontend
 - [ ] Login e "minha garagem"
 - [ ] Catálogo de peças reais com medidas e compatibilidade
-- [ ] Primeiros modelos 3D genéricos de qualidade
+- [x] Hatch genérico em 3D (Blender)
+- [ ] Sedã e picape genéricos em 3D
 - [ ] Deploy na AWS

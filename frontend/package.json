@@ -8,8 +8,7 @@
     "build": "tsc -b && vite build",
     "preview": "vite preview",
     "typecheck": "tsc -b",
-    "validate-model": "node scripts/validate-model.mjs",
-    "make-example-model": "node scripts/make-example-model.mjs"
+    "validate-model": "node scripts/validate-model.mjs"
   },
   "dependencies": {
     "@google/model-viewer": "^4.4.0",
@@ -21,6 +20,7 @@
   },
   "devDependencies": {
     "@gltf-transform/core": "^4.5.1",
+    "@gltf-transform/extensions": "^4.5.1",
     "@types/react": "^19.3.0",
     "@types/react-dom": "^19.3.0",
     "@types/three": "^0.183.1",

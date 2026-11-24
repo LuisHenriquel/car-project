@@ -23,7 +23,7 @@ public static class SeedData
             Slug = "hatch-generico",
             Name = "Hatch genérico",
             BodyType = BodyType.Hatch,
-            ModelUrl = null,
+            ModelUrl = "/models/hatch-generico.glb", // gerado por tools/blender/gerar_carro.py
             Specs = new VehicleSpecs
             {
                 LengthMm = 3880, WidthMm = 1720, WheelbaseMm = 2520, FrontAxleOffsetMm = 1220,
@@ -54,30 +54,29 @@ public static class SeedData
                 WheelCenterHeightMm = 310, ArchRadiusMm = 370, GroundClearanceMm = 205, StockRimInches = 15,
             },
         },
-
-        // Exemplo de carro carregado de um .glb no padrão. Pode remover quando entrarem os modelos de verdade.
-        new()
-        {
-            Slug = "exemplo-hatch-glb",
-            Name = "Exemplo de modelo .glb",
-            BodyType = BodyType.Hatch,
-            ModelUrl = "/models/exemplo-hatch.glb",
-            Specs = new VehicleSpecs
-            {
-                LengthMm = 3880, WidthMm = 1720, WheelbaseMm = 2520, FrontAxleOffsetMm = 1220,
-                WheelCenterHeightMm = 310, ArchRadiusMm = 370, GroundClearanceMm = 165, StockRimInches = 15,
-            },
-        },
     ];
 
-    /// <summary>Insere os carros que ainda não existem no banco (pelo Slug).</summary>
+    /// <summary>
+    /// Insere os carros que ainda não existem (pelo Slug) e atualiza os que já existem
+    /// (nome, modelo 3D e medidas), para o banco acompanhar o que está aqui.
+    /// </summary>
     public static async Task EnsureSeededAsync(AppDbContext db, CancellationToken ct = default)
     {
-        var existing = await db.Vehicles.Select(v => v.Slug).ToListAsync(ct);
-        var missing = CreateVehicles().Where(v => !existing.Contains(v.Slug)).ToList();
-        if (missing.Count == 0) return;
-
-        db.Vehicles.AddRange(missing);
+        var existing = await db.Vehicles.ToListAsync(ct);
+        foreach (var seed in CreateVehicles())
+        {
+            var vehicle = existing.FirstOrDefault(v => v.Slug == seed.Slug);
+            if (vehicle is null)
+            {
+                db.Vehicles.Add(seed);
+                continue;
+            }
+            vehicle.Name = seed.Name;
+            vehicle.Brand = seed.Brand;
+            vehicle.BodyType = seed.BodyType;
+            vehicle.ModelUrl = seed.ModelUrl;
+            vehicle.Specs = seed.Specs;
+        }
         await db.SaveChangesAsync(ct);
     }
 }

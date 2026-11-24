@@ -5,6 +5,7 @@
 import { statSync } from 'node:fs'
 import { readFile } from 'node:fs/promises'
 import { NodeIO, getBounds } from '@gltf-transform/core'
+import { ALL_EXTENSIONS } from '@gltf-transform/extensions'
 
 const standard = JSON.parse(await readFile(new URL('../src/vehicles/model-standard.json', import.meta.url), 'utf8'))
 
@@ -23,7 +24,7 @@ if (sizeMb > standard.limits.maxFileSizeMb) {
   warnings.push(`Arquivo com ${sizeMb.toFixed(1)} MB (limite recomendado: ${standard.limits.maxFileSizeMb} MB)`)
 }
 
-const doc = await new NodeIO().read(file)
+const doc = await new NodeIO().registerExtensions(ALL_EXTENSIONS).read(file)
 const root = doc.getRoot()
 const scene = root.getDefaultScene() ?? root.listScenes()[0]
 const nodes = root.listNodes()

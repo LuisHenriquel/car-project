@@ -37,7 +37,7 @@ Os `wheel_*` podem ser objetos vazios (Empty) ou conter o pneu original. **O app
 
 ## Como adicionar um carro novo
 
-1. **Modele ou importe** o carro no Blender seguindo as regras acima.
+1. **Modele ou importe** o carro no Blender seguindo as regras acima (ou gere pelo script, abaixo).
    - Rodas e carroceria separadas, com os nomes da tabela.
    - Para conferir e exportar, use o script [`tools/blender/exportar_modelo.py`](../tools/blender/exportar_modelo.py):
      ```bash
@@ -55,9 +55,25 @@ Os `wheel_*` podem ser objetos vazios (Empty) ou conter o pneu original. **O app
 
 > Os arquivos ficam em `frontend/public/models/` por enquanto. Quando formos para a AWS, vão para o S3 e o `ModelUrl` passa a ser a URL de lá.
 
-## Exemplo
+## Carros genéricos gerados por script
 
-[`frontend/public/models/exemplo-hatch.glb`](../frontend/public/models/exemplo-hatch.glb) segue o padrão e aparece no app como **Exemplo de modelo .glb**. Ele é gerado por `npm run make-example-model` e pode ser usado como referência no Blender (File → Import → glTF).
+Os carros genéricos são gerados direto no Blender por [`tools/blender/gerar_carro.py`](../tools/blender/gerar_carro.py), já no padrão. Funciona com o Blender instalado ou só com o módulo Python dele (`pip install bpy`):
+
+```bash
+# gera o .glb (e um .blend ao lado, para abrir e ajustar no Blender)
+python tools/blender/gerar_carro.py hatch frontend/public/models/hatch-generico.glb
+
+# imagens de conferência (frente, traseira e lado)
+python tools/blender/render_preview.py frontend/public/models/hatch-generico.blend /tmp/hatch
+```
+
+| Carro | Arquivo | Situação |
+|---|---|---|
+| Hatch | `frontend/public/models/hatch-generico.glb` | pronto |
+| Sedã | — | carro simples do app (placeholder) |
+| Picape | — | carro simples do app (placeholder) |
+
+Cada carro é uma `CarSpec` no começo do script: silhueta lateral, largura, eixos, linha das janelas, posição dos faróis etc. Para criar outro, copie uma `CarSpec` e ajuste.
 
 ## Licença dos modelos
 

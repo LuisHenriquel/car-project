@@ -18,3 +18,7 @@ obj
 .env
 .env.*
 appsettings.*.local.json
+
+# Blender (arquivos de trabalho)
+*.blend
+*.blend1

@@ -11,7 +11,7 @@ export const FALLBACK_VEHICLES: Vehicle[] = [
     name: 'Hatch genérico',
     brand: null,
     bodyType: 'hatch',
-    modelUrl: null,
+    modelUrl: '/models/hatch-generico.glb',
     specs: {
       lengthMm: 3880, widthMm: 1720, wheelbaseMm: 2520, frontAxleOffsetMm: 1220,
       wheelCenterHeightMm: 310, archRadiusMm: 370, groundClearanceMm: 165, stockRimInches: 15,
@@ -39,20 +39,6 @@ export const FALLBACK_VEHICLES: Vehicle[] = [
     specs: {
       lengthMm: 4500, widthMm: 1800, wheelbaseMm: 2840, frontAxleOffsetMm: 1420,
       wheelCenterHeightMm: 310, archRadiusMm: 370, groundClearanceMm: 205, stockRimInches: 15,
-    },
-  },
-  {
-    // Exemplo de carro carregado de um .glb no padrão (docs/modelos-3d.md).
-    // Pode remover quando entrarem os modelos de verdade.
-    id: 4,
-    slug: 'exemplo-hatch-glb',
-    name: 'Exemplo de modelo .glb',
-    brand: null,
-    bodyType: 'hatch',
-    modelUrl: '/models/exemplo-hatch.glb',
-    specs: {
-      lengthMm: 3880, widthMm: 1720, wheelbaseMm: 2520, frontAxleOffsetMm: 1220,
-      wheelCenterHeightMm: 310, archRadiusMm: 370, groundClearanceMm: 165, stockRimInches: 15,
     },
   },
 ]
